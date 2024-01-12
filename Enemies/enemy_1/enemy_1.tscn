@@ -13,6 +13,8 @@
 radius = 28.0179
 
 [node name="Enemy1" type="CharacterBody2D"]
+collision_layer = 8
+collision_mask = 9
 script = ExtResource("1_yrn2s")
 
 [node name="HealthComponent" parent="." instance=ExtResource("2_spolp")]
