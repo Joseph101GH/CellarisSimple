@@ -14,10 +14,10 @@ func _physics_process(delta):
 #	if velocity.length() > 0:
 #		$EnemyAnimationPlayer.play("fly")
 		
-	if velocity.x > 0:
-		$Visuals/Sprite2D.flip_h = false
-	else:
-		$Visuals/Sprite2D.flip_h = true
+#	if velocity.x > 0:
+#		$Visuals/Sprite2D.flip_h = false
+#	else:
+#		$Visuals/Sprite2D.flip_h = true
 
 
 func on_hit():
