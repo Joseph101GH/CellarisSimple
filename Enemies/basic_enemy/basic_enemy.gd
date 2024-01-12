@@ -4,6 +4,7 @@ extends CharacterBody2D
 @onready var visuals = $Visuals
 
 
+# Function when ready
 func _ready():
 	$HurtboxComponent.hit.connect(on_hit)
 
