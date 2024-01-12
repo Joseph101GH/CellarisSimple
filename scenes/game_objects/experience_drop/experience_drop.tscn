@@ -1,0 +1,23 @@
+[gd_scene load_steps=6 format=3 uid="uid://dluchhdh8uj4d"]
+
+[ext_resource type="Script" path="res://scenes/game_objects/experience_drop/experience_drop.gd" id="1_owud0"]
+[ext_resource type="Texture2D" uid="uid://3i5rdkkk751x" path="res://assets/items/experience_drop.png" id="1_svj7t"]
+[ext_resource type="PackedScene" uid="uid://deo2fouakxu3o" path="res://scenes/components/random_stream_player_2d_component.tscn" id="2_e5cdq"]
+[ext_resource type="AudioStream" uid="uid://cfn0ilnp6kysr" path="res://assets/audio/Experience_pickup.ogg" id="3_s2ucv"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_myrca"]
+radius = 40.0
+
+[node name="ExperienceDrop" type="Node2D"]
+script = ExtResource("1_owud0")
+
+[node name="RandomStreamPlayer2DComponent" parent="." instance=ExtResource("2_e5cdq")]
+stream = ExtResource("3_s2ucv")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_myrca")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_svj7t")

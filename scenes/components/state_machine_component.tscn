@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://rgcv15pcivq7"]
+
+[ext_resource type="Script" path="res://scripts/States/state_machine.gd" id="1_mdqa2"]
+[ext_resource type="Script" path="res://scenes/components/enemy_idle.gd" id="2_3yys3"]
+[ext_resource type="Script" path="res://scenes/components/enemy_follow.gd" id="3_h3wds"]
+
+[node name="StateMachineComponent" type="Node" node_paths=PackedStringArray("initial_state")]
+script = ExtResource("1_mdqa2")
+initial_state = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="."]
+script = ExtResource("2_3yys3")
+move_speed = 40.0
+start_chase_distance = 200
+
+[node name="Follow" type="Node" parent="."]
+script = ExtResource("3_h3wds")

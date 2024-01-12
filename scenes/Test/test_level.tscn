@@ -1,0 +1,84 @@
+[gd_scene load_steps=15 format=3 uid="uid://bv5yj7c12coe"]
+
+[ext_resource type="PackedScene" uid="uid://dduwgcest58sm" path="res://scenes/ui/experience_bar.tscn" id="1_50ays"]
+[ext_resource type="PackedScene" uid="uid://dbn3bmg7s8b2v" path="res://Player/Player.tscn" id="1_ip2xf"]
+[ext_resource type="PackedScene" uid="uid://be3h15l1appr4" path="res://scenes/game_objects/game_camera/game_camera.tscn" id="1_og4qd"]
+[ext_resource type="PackedScene" uid="uid://cr37hjd81vwvm" path="res://scenes/managers/arena_time_manager.tscn" id="1_ot47v"]
+[ext_resource type="PackedScene" uid="uid://dvfpqgkvbp3cc" path="res://scenes/managers/experience_manager.tscn" id="2_m78cm"]
+[ext_resource type="PackedScene" uid="uid://18lrj83icx4f" path="res://Enemies/basic_enemy/basic_enemy.tscn" id="2_mjip1"]
+[ext_resource type="PackedScene" uid="uid://fnawajh5p45y" path="res://Enemies/enemy_1/enemy_1.tscn" id="3_d44ke"]
+[ext_resource type="Texture2D" uid="uid://c00ji1sdrgk2h" path="res://assets/environment/Background.png" id="4_5qhko"]
+[ext_resource type="PackedScene" uid="uid://dj55kd5ecxru6" path="res://Enemies/enemy_2/enemy_2.tscn" id="5_2rfji"]
+[ext_resource type="PackedScene" uid="uid://bqkma58igaf13" path="res://Enemies/enemy_3/enemy_3.tscn" id="5_h434i"]
+[ext_resource type="PackedScene" uid="uid://bdiqgjjyoj7af" path="res://scenes/managers/enemy_manager.tscn" id="7_wf02m"]
+[ext_resource type="Script" path="res://UI/parallax_background.gd" id="9_1sppt"]
+[ext_resource type="Texture2D" uid="uid://bfgygqepflnsn" path="res://assets/environment/BG Paralax 1.png" id="10_qj76r"]
+[ext_resource type="PackedScene" uid="uid://dluchhdh8uj4d" path="res://scenes/game_objects/experience_drop/experience_drop.tscn" id="14_bsmm3"]
+
+[node name="TestLevel" type="Node2D"]
+
+[node name="ExperienceBar" parent="." node_paths=PackedStringArray("experience_manager") instance=ExtResource("1_50ays")]
+experience_manager = NodePath("../ExperienceManager")
+
+[node name="ExperienceManager" parent="." instance=ExtResource("2_m78cm")]
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+scroll_offset = Vector2(40, 40)
+script = ExtResource("9_1sppt")
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground"]
+texture = ExtResource("4_5qhko")
+centered = false
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.1, 0.1)
+motion_mirroring = Vector2(1920, 1080)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+texture = ExtResource("10_qj76r")
+centered = false
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.3, 0.3)
+motion_mirroring = Vector2(1920, 1080)
+
+[node name="Sprite2D2" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer2"]
+texture = ExtResource("10_qj76r")
+centered = false
+flip_h = true
+flip_v = true
+
+[node name="ArenaTimeManager" parent="." instance=ExtResource("1_ot47v")]
+
+[node name="EnemyManager" parent="." node_paths=PackedStringArray("arena_time_manager") instance=ExtResource("7_wf02m")]
+basic_enemy_scene = ExtResource("2_mjip1")
+enemy_1_scene = ExtResource("3_d44ke")
+enemy_2_scene = ExtResource("5_2rfji")
+enemy_3_scene = ExtResource("5_h434i")
+arena_time_manager = NodePath("../ArenaTimeManager")
+
+[node name="GameCamera" parent="." node_paths=PackedStringArray("player") instance=ExtResource("1_og4qd")]
+position = Vector2(513, 355)
+player = NodePath("../Player")
+smoothing_enabled = true
+smoothing_distance = 6
+
+[node name="Player" parent="." instance=ExtResource("1_ip2xf")]
+position = Vector2(510, 353)
+
+[node name="Entities" type="Node2D" parent="." groups=["entities_layer"]]
+
+[node name="ExperienceDrop" parent="." instance=ExtResource("14_bsmm3")]
+position = Vector2(737, 627)
+
+[node name="ExperienceDrop2" parent="." instance=ExtResource("14_bsmm3")]
+position = Vector2(799, 703)
+
+[node name="ExperienceDrop3" parent="." instance=ExtResource("14_bsmm3")]
+position = Vector2(996, 833)
+
+[node name="ExperienceDrop4" parent="." instance=ExtResource("14_bsmm3")]
+position = Vector2(612, 508)
+
+[node name="ExperienceDrop5" parent="." instance=ExtResource("14_bsmm3")]
+position = Vector2(877, 771)

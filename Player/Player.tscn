@@ -1,0 +1,52 @@
+[gd_scene load_steps=7 format=3 uid="uid://dbn3bmg7s8b2v"]
+
+[ext_resource type="Texture2D" uid="uid://ciwxd2jflbe7s" path="res://Player/Player.png" id="1_fo27d"]
+[ext_resource type="Script" path="res://Player/Player.gd" id="1_r8r2i"]
+[ext_resource type="Script" path="res://Player/VelocityComponent.gd" id="2_p6l46"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1jidf"]
+radius = 100.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8vrsl"]
+radius = 25.02
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_k4bsu"]
+radius = 28.0713
+
+[node name="CharacterBody2D" type="CharacterBody2D" groups=["player"]]
+collision_layer = 0
+script = ExtResource("1_r8r2i")
+
+[node name="VelocityComponent" type="Node" parent="."]
+script = ExtResource("2_p6l46")
+max_speed = 100
+
+[node name="Abilities" type="Node" parent="."]
+
+[node name="HurtboxComponent" type="Node" parent="."]
+
+[node name="HealthComponent" type="Node" parent="."]
+
+[node name="DamageIntervalTimer" type="Timer" parent="."]
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+offset_right = 4.0
+offset_bottom = 27.0
+
+[node name="Visuals" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Visuals"]
+texture = ExtResource("1_fo27d")
+
+[node name="PickupArea2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PickupArea2D"]
+shape = SubResource("CircleShape2D_1jidf")
+
+[node name="HurtboxComponentArea2D" type="Area2D" parent="."]
+
+[node name="HitboxCollisionShape2D" type="CollisionShape2D" parent="HurtboxComponentArea2D"]
+shape = SubResource("CircleShape2D_8vrsl")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_k4bsu")
