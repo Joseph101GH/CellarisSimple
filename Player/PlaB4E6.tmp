@@ -1,13 +1,9 @@
-[gd_scene load_steps=13 format=3 uid="uid://dbn3bmg7s8b2v"]
+[gd_scene load_steps=9 format=3 uid="uid://dbn3bmg7s8b2v"]
 
-[ext_resource type="Texture2D" uid="uid://bjpjcrt0cx345" path="res://Player/Player.png" id="1_fo27d"]
+[ext_resource type="Texture2D" uid="uid://ciwxd2jflbe7s" path="res://Player/Player.png" id="1_fo27d"]
 [ext_resource type="Script" path="res://Player/Player.gd" id="1_r8r2i"]
 [ext_resource type="PackedScene" uid="uid://bdtk8mceeln11" path="res://scenes/components/velocity_component.tscn" id="2_o6uxo"]
-[ext_resource type="Script" path="res://Player/character_state_machine.gd" id="3_8uau3"]
-[ext_resource type="PackedScene" uid="uid://deo2fouakxu3o" path="res://scenes/components/random_stream_player_2d_component.tscn" id="3_imosu"]
 [ext_resource type="PackedScene" uid="uid://bt524gbxa8tof" path="res://scenes/components/health_component.tscn" id="3_upykw"]
-[ext_resource type="Script" path="res://Player/player_idle_state.gd" id="4_bryq1"]
-[ext_resource type="Script" path="res://Player/player_dash_state.gd" id="5_x4gv0"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5578j"]
 bg_color = Color(0.87451, 0.454902, 0.486275, 1)
@@ -26,7 +22,7 @@ radius = 25.02
 [sub_resource type="CircleShape2D" id="CircleShape2D_k4bsu"]
 radius = 28.0713
 
-[node name="Player" type="CharacterBody2D" groups=["player"]]
+[node name="CharacterBody2D" type="CharacterBody2D" groups=["player"]]
 collision_layer = 0
 script = ExtResource("1_r8r2i")
 
@@ -35,23 +31,6 @@ max_speed = 100
 acceleration = 50.0
 
 [node name="Abilities" type="Node" parent="."]
-
-[node name="CharacterStateMachine" type="Node" parent="." node_paths=PackedStringArray("character", "current_state")]
-script = ExtResource("3_8uau3")
-character = NodePath("..")
-current_state = NodePath("Idle")
-
-[node name="Idle" type="Node" parent="CharacterStateMachine" node_paths=PackedStringArray("dash_state")]
-script = ExtResource("4_bryq1")
-dash_state = NodePath("../Dash")
-
-[node name="BufferTimer" type="Timer" parent="CharacterStateMachine/Idle"]
-
-[node name="Dash" type="Node" parent="CharacterStateMachine" node_paths=PackedStringArray("idle_state")]
-script = ExtResource("5_x4gv0")
-idle_state = NodePath("../Idle")
-
-[node name="HitRandomStreamPlayer" parent="." instance=ExtResource("3_imosu")]
 
 [node name="HealthComponent" parent="." instance=ExtResource("3_upykw")]
 
@@ -80,8 +59,6 @@ shape = SubResource("CircleShape2D_1jidf")
 texture = ExtResource("1_fo27d")
 
 [node name="HurtboxComponent" type="Area2D" parent="."]
-collision_layer = 0
-collision_mask = 8
 
 [node name="HitboxCollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent"]
 shape = SubResource("CircleShape2D_8vrsl")

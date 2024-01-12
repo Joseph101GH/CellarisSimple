@@ -1,25 +1,20 @@
 extends CharacterBody2D
 
+# Using 'onready' to initialize variables when the node and its children are ready
 @onready var velocity_component = $VelocityComponent
 @onready var visuals = $Visuals
 
 
-# Function when ready
 func _ready():
+	# Connecting the 'hit' signal from the HurtboxComponent to the 'on_hit' function
 	$HurtboxComponent.hit.connect(on_hit)
 
 
 func _physics_process(delta):
+	# Process movement logic here.
 	move_and_slide()
-	
-#	if velocity.length() > 0:
-#		$EnemyAnimationPlayer.play("fly")
-		
-#	if velocity.x > 0:
-#		$Visuals/Sprite2D.flip_h = false
-#	else:
-#		$Visuals/Sprite2D.flip_h = true
 
 
 func on_hit():
+	# Play a random audio on hit
 	$HitRandomAudioPlayerComponent.play_random()
