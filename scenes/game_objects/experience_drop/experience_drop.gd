@@ -4,7 +4,6 @@ extends Node2D
 @onready var sprite = $Sprite2D
 
 
-
 func _ready():
 	$Area2D.area_entered.connect(on_area_entered)
 	
