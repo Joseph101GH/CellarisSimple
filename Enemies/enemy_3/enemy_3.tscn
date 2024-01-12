@@ -1,0 +1,36 @@
+[gd_scene load_steps=10 format=3 uid="uid://ruc1vs3m5o6s"]
+
+[ext_resource type="Script" path="res://Enemies/enemy_3/enemy_3.gd" id="1_iov8f"]
+[ext_resource type="PackedScene" uid="uid://bt524gbxa8tof" path="res://scenes/components/health_component.tscn" id="2_a21lx"]
+[ext_resource type="PackedScene" uid="uid://bdtk8mceeln11" path="res://scenes/components/velocity_component.tscn" id="3_s4f00"]
+[ext_resource type="PackedScene" uid="uid://mq1pymbx1xaq" path="res://scenes/components/experience_drop_component.tscn" id="4_vbthk"]
+[ext_resource type="PackedScene" uid="uid://rgcv15pcivq7" path="res://scenes/components/state_machine_component.tscn" id="5_5t8bp"]
+[ext_resource type="PackedScene" uid="uid://deo2fouakxu3o" path="res://scenes/components/random_stream_player_2d_component.tscn" id="6_rj0hr"]
+[ext_resource type="PackedScene" uid="uid://ctgi6e2nii1k2" path="res://scenes/components/hurtbox_component.tscn" id="7_m5byd"]
+[ext_resource type="Texture2D" uid="uid://cum5gw18hqbnx" path="res://Enemies/enemy_3/enemy_3.png" id="8_2b4rn"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7di0x"]
+radius = 31.0644
+
+[node name="Enemy3" type="CharacterBody2D"]
+script = ExtResource("1_iov8f")
+
+[node name="HealthComponent" parent="." instance=ExtResource("2_a21lx")]
+
+[node name="VelocityComponent" parent="." instance=ExtResource("3_s4f00")]
+
+[node name="ExperienceDropComponent" parent="." instance=ExtResource("4_vbthk")]
+
+[node name="StateMachineComponent" parent="." instance=ExtResource("5_5t8bp")]
+
+[node name="HitRandomAudioPlayerComponent" parent="." instance=ExtResource("6_rj0hr")]
+
+[node name="HurtboxComponent" parent="." instance=ExtResource("7_m5byd")]
+
+[node name="Visuals" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Visuals"]
+texture = ExtResource("8_2b4rn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_7di0x")

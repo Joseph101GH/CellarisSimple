@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://mq1pymbx1xaq"]
+
+[ext_resource type="Script" path="res://experience_drop_component.gd" id="1_26ir7"]
+
+[node name="ExperienceDropComponent" type="Node"]
+script = ExtResource("1_26ir7")

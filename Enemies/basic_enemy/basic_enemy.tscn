@@ -1,0 +1,38 @@
+[gd_scene load_steps=10 format=3 uid="uid://bgfwa1tbp84ln"]
+
+[ext_resource type="PackedScene" uid="uid://bt524gbxa8tof" path="res://scenes/components/health_component.tscn" id="1_dt8f4"]
+[ext_resource type="Script" path="res://Enemies/basic_enemy/basic_enemy.gd" id="1_wy0pc"]
+[ext_resource type="PackedScene" uid="uid://bdtk8mceeln11" path="res://scenes/components/velocity_component.tscn" id="2_3hh1d"]
+[ext_resource type="PackedScene" uid="uid://mq1pymbx1xaq" path="res://scenes/components/experience_drop_component.tscn" id="3_n1tyw"]
+[ext_resource type="PackedScene" uid="uid://rgcv15pcivq7" path="res://scenes/components/state_machine_component.tscn" id="4_tanvp"]
+[ext_resource type="PackedScene" uid="uid://deo2fouakxu3o" path="res://scenes/components/random_stream_player_2d_component.tscn" id="5_01hui"]
+[ext_resource type="Texture2D" uid="uid://snuoniuqdaow" path="res://Enemies/basic_enemy/basic_enemy.png" id="7_830of"]
+[ext_resource type="PackedScene" uid="uid://ctgi6e2nii1k2" path="res://scenes/components/hurtbox_component.tscn" id="7_jemha"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_os4gh"]
+radius = 30.0167
+
+[node name="BasicEnemy" type="CharacterBody2D"]
+script = ExtResource("1_wy0pc")
+
+[node name="HealthComponent" parent="." instance=ExtResource("1_dt8f4")]
+
+[node name="VelocityComponent" parent="." instance=ExtResource("2_3hh1d")]
+
+[node name="ExperienceDropComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("3_n1tyw")]
+health_component = NodePath("../HealthComponent")
+
+[node name="StateMachineComponent" parent="." node_paths=PackedStringArray("enemy") instance=ExtResource("4_tanvp")]
+enemy = NodePath("..")
+
+[node name="HitRandomAudioPlayerComponent" parent="." instance=ExtResource("5_01hui")]
+
+[node name="Visuals" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Visuals"]
+texture = ExtResource("7_830of")
+
+[node name="HurtboxComponent" parent="." instance=ExtResource("7_jemha")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_os4gh")
